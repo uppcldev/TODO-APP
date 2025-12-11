@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-
-
-// https://vite.dev/config/
 export default defineConfig({
+  base: "/",
   plugins: [
     react({
       babel: {
@@ -15,7 +13,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3200',
+        // target: 'http://localhost:3200',
+        target: 'https://todo-app-4mws.onrender.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
