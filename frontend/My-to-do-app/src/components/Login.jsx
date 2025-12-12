@@ -26,7 +26,7 @@ function Login(){
       window.dispatchEvent(new Event('localStorage-change'))
       navigate('/')
     }else{
-      alert('Try after sometime')
+      alert('Incorrect username or password')
     }
   }
   return(

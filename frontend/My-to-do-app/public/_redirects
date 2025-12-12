@@ -1,0 +1,2 @@
+/api/*  https://todo-app-4mws.onrender.com/:splat  200
+/*      /index.html                                200

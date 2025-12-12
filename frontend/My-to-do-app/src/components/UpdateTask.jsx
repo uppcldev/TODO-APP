@@ -5,15 +5,16 @@ function UpdateTask(){
   const [taskData,setTaskData]=useState();
   const navigate=useNavigate();
   const {id}=useParams()
-  var getTask=()=>null;
-  useEffect(()=>{getTask(id)})
-  getTask=async(id)=>{
-    let task=await fetch('/api/task/'+id, {credentials:'include'});
-    task=await task.json()
-    if(task.result){
-      setTaskData(task.result)
+  useEffect(()=>{
+    const getTask=async()=>{
+      let task=await fetch('/api/task/'+id, {credentials:'include'});
+      task=await task.json()
+      if(task.result){
+        setTaskData(task.result)
+      }
     }
-  }
+    getTask();
+  }, [id])
   const updateTask=async()=>{
     console.log('function called',taskData);
     let task=await fetch("/api/update-task",{
@@ -33,8 +34,7 @@ function UpdateTask(){
   }
   return(
     <div className="container">
-      <h1>Update Task</h1>
-      
+      <h1>Update Task</h1>      
         <label htmlFor="">Title</label>
         <input value={taskData?.title} onChange={(event)=>setTaskData({...taskData, title:event.target.value})} type="text" name="title" placeholder="Enter Task Title"/>
         <label htmlFor="">Description</label>
